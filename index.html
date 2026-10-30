@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harmonium BD - Offline Playable Harmonium</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div>
+      <h1 id="appTitle" data-i18n="title">Harmonium BD</h1>
+      <p class="subtitle" data-i18n="subtitle">Play offline, record your practice, and learn sargam.</p>
+    </div>
+    <button id="langBtn" class="lang-btn" type="button">Bangla</button>
+  </header>
+
+  <section class="statusbar" aria-live="polite">
+    <span><strong data-i18n="lastPlayed">Last note</strong>: <span id="lastNote">-</span></span>
+    <span id="recState" class="rec-state"></span>
+    <span id="recordedCount"></span>
+  </section>
+
+  <section class="controls" aria-label="Harmonium controls">
+    <label class="ctl">
+      <span data-i18n="octaveLabel">Sa octave</span>
+      <select id="octaveSel">
+        <option value="-1" data-i18n="octaveLow">Low (C3)</option>
+        <option value="0" selected data-i18n="octaveMid">Middle (C4)</option>
+        <option value="1" data-i18n="octaveHigh">High (C5)</option>
+      </select>
+    </label>
+    <label class="ctl">
+      <span data-i18n="labelsLabel">Key labels</span>
+      <select id="labelsSel">
+        <option value="sargam" selected data-i18n="labelsSargam">Sargam</option>
+        <option value="western" data-i18n="labelsWestern">Western</option>
+      </select>
+    </label>
+    <label class="ctl">
+      <span data-i18n="volumeLabel">Volume</span>
+      <input id="volumeRange" type="range" min="0" max="100" value="70">
+      <span id="volumeVal">70%</span>
+    </label>
+    <label class="ctl check">
+      <input id="sustainChk" type="checkbox">
+      <span data-i18n="sustainLabel">Sustain (let notes ring)</span>
+    </label>
+    <label class="ctl">
+      <span data-i18n="tempoLabel">Exercise speed</span>
+      <select id="tempoSel">
+        <option value="slow" data-i18n="tempoSlow">Slow</option>
+        <option value="medium" selected data-i18n="tempoMedium">Medium</option>
+        <option value="fast" data-i18n="tempoFast">Fast</option>
+      </select>
+    </label>
+  </section>
+
+  <section class="keyboard-wrap">
+    <div id="keyboard" class="keyboard" role="group" aria-label="Harmonium keyboard"></div>
+    <p class="hint" data-i18n="keyboardHint">Mouse / touch: tap the keys. Computer keyboard: lower row Z-M plays the first octave, upper row Q-U plays the second octave.</p>
+    <p class="hint" data-i18n="sargamLegend">Sargam legend: Sa C | Re- = komal Re (flat) | Ga- = komal Ga | Ma+ = tivra Ma (sharp) | Dha- = komal Dha | Ni- = komal Ni.</p>
+  </section>
+
+  <section class="panels">
+    <div class="panel">
+      <h2 data-i18n="recordBtn">Record</h2>
+      <div class="btnrow">
+        <button id="recordBtn" type="button" data-i18n="recordBtn">Record</button>
+        <button id="playRecordBtn" type="button" data-i18n="playRecordBtn">Play last recording</button>
+        <button id="saveRecordBtn" type="button" data-i18n="saveRecordBtn">Save recording</button>
+        <button id="clearRecordBtn" type="button" data-i18n="clearRecordBtn">Clear recording</button>
+      </div>
+      <h3 data-i18n="savedTitle">Saved recordings</h3>
+      <p id="noSaved" class="muted" data-i18n="noSaved">No saved recordings yet. Record something, then save it.</p>
+      <ul id="savedList" class="saved-list"></ul>
+    </div>
+    <div class="panel">
+      <h2 data-i18n="exercisesTitle">Practice exercises</h2>
+      <div class="ex-row"><span data-i18n="exScale">Sargam scale up &amp; down</span><button type="button" class="ex-btn" data-ex="scale" data-i18n="playExercise">Play</button></div>
+      <div class="ex-row"><span data-i18n="exAlankar">Alankar pattern</span><button type="button" class="ex-btn" data-ex="alankar" data-i18n="playExercise">Play</button></div>
+      <div class="ex-row"><span data-i18n="exPhrase">Practice phrase</span><button type="button" class="ex-btn" data-ex="phrase" data-i18n="playExercise">Play</button></div>
+      <button id="stopExerciseBtn" type="button" data-i18n="stopExercise">Stop</button>
+      <p id="exerciseStatus" class="muted"></p>
+    </div>
+  </section>
+
+  <p id="notice" class="notice" aria-live="polite"></p>
+  <footer data-i18n="footer">100% offline practice instrument. Sound is synthesized in your browser; nothing is uploaded. Not a substitute for a teacher or a real harmonium.</footer>
+</main>
+<script src="js/logic.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
